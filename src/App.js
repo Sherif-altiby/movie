@@ -1,24 +1,27 @@
-import logo from './logo.svg';
 import './App.css';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Header from './Components/Header';
+import Watchlist from './Components/Watchlist';
+import Add from './Components/Add';
+import Watched from './Components/Watched';
+import ContextProvider from './Components/Context/GlobalContext';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <Router>
+      <Header />
+        <ContextProvider>
+        <Routes>
+
+          <Route path='/'        element = {<Watchlist />} />
+          <Route path='/movie'        element = {<Add />} />
+          <Route path='/add'     element = {<Add       />} />
+          <Route path='/watched' element = {<Watched   />} />
+          
+        </Routes>
+
+        </ContextProvider>
+      </Router>
   );
 }
 
